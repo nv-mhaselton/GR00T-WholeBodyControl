@@ -1,7 +1,7 @@
 """Input source readers for body tracking data.
 
-PicoReader         -- pulls data from XRoboToolkit SDK (Pico headset).
-IsaacTeleopReader  -- in-process IsaacTeleop / CloudXR DeviceIO session.
+IsaacTeleopReader  -- default in-process Isaac Teleop / CloudXR DeviceIO session.
+PicoReader         -- XRoboToolkit SDK input (PICO headset).
 """
 
 import logging
@@ -343,7 +343,7 @@ def _build_controller_dict(raw: dict[str, Any] | None) -> dict[str, Any] | None:
 class IsaacTeleopReader:
     """Background reader using the in-process IsaacTeleop / CloudXR DeviceIO session.
 
-    Drop-in alternative to ``PicoReader`` — same ``get_latest()`` /
+    Default reader with the same ``get_latest()`` /
     ``get_controller_data()`` contract. Hosts the CloudXR runtime in-process
     via :class:`IsaacTeleopClient` (no separate publisher container, no host
     ``~/.cloudxr`` sharing required).
@@ -489,4 +489,3 @@ class IsaacTeleopReader:
                 last_report = now
 
             time.sleep(self._period)
-

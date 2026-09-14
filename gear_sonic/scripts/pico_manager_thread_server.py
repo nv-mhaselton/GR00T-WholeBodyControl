@@ -1608,7 +1608,7 @@ def run_pico(
     with_g1_robot: bool = True,
     enable_waist_tracking: bool = False,
     enable_smpl_vis: bool = False,
-    input_source: str = "xrt",
+    input_source: str = "isaac-teleop",
 ):
     """Run body tracking with real-time visualization and ZMQ streaming."""
     reader = _init_input_source(input_source, buffer_size)
@@ -1911,7 +1911,7 @@ def run_pico_manager(
     with_g1_robot: bool = True,
     enable_waist_tracking: bool = False,
     enable_smpl_vis: bool = False,
-    input_source: str = "xrt",
+    input_source: str = "isaac-teleop",
 ):
     """
     Manager: creates shared PUB socket and runs pose/planner streamers based on current mode.
@@ -2244,11 +2244,11 @@ if __name__ == "__main__":
     parser.add_argument(
         "--input-source",
         type=str,
-        default="xrt",
+        default="isaac-teleop",
         choices=["xrt", "isaac-teleop"],
         help=(
-            "Input source: 'xrt' for XRoboToolkit SDK (default), "
-            "'isaac-teleop' for in-process IsaacTeleop / CloudXR DeviceIO"
+            "Input source: 'isaac-teleop' for in-process Isaac Teleop / CloudXR "
+            "DeviceIO (default), or 'xrt' for the XRoboToolkit SDK"
         ),
     )
     args = parser.parse_args()
